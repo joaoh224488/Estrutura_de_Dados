@@ -1,5 +1,5 @@
 
-#include "pile.h"
+#include "post_fixed.h"
 
 
 pile * create_pile(){
@@ -55,15 +55,4 @@ int pop(pile **p){
     free(t);
 
     return v;
-}
-
-void free_pile(pile **p){
-    node *t, *next;
-
-    for(t = (*p)->top; t != NULL; t = next){
-        next = t->next;
-        free(t);
-    }
-
-    free(*p);
 }
