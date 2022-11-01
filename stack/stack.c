@@ -56,6 +56,19 @@ int pop(stack **p){
 
     return v;
 }
+/*
+Nesta função recursiva, o caso base serve unicamente para parar o programa para não 
+mostrar a subpilha vazia
+*/
+void show_stack(node *p){
+    
+    if (!p){
+        putchar('\n');
+        return;
+    }
+    printf("%d ", p->info);
+    show_stack(p->next);
+}
 
 void free_stack(stack **p){
     node *t, *next;

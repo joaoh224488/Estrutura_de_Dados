@@ -36,14 +36,8 @@ int main(){
         push(&p, i);
     }
 
-    ll_show(&(p->top));
-
-    for(i = 0; i < n; i++){
-        printf("%d , ", pop(&p));
-    }
-    putchar('\n');
-
-    ll_show(&(p->top));
+    show_stack(p->top);
+    //ll_show(&(p->top));
 
     return 0;
 }

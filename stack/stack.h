@@ -32,6 +32,8 @@ int pop(stack **p);
 
 stack * create_stack();
 
+void show_stack(node *p);
+
 void free_stack(stack **p);
 
 
