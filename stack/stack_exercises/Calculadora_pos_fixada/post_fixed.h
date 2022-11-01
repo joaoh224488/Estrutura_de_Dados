@@ -63,6 +63,8 @@ void calc_operand(post_fixed *c, int v);
 
 void calc_operator(post_fixed *c, char op);
 
+int calc_result(post_fixed *c, char *expression);
+
 void free_post_fixed(post_fixed **c);
 
 

@@ -40,7 +40,6 @@ struct avaliador
 {
     stack *pilha;
     char *expressao;
-    int resultado;
 };
 typedef struct avaliador avaliador;
 

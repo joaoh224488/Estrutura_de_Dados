@@ -125,6 +125,51 @@ void calc_operator(post_fixed *c, char op){
     printf("%d %c %d = %d\n", v1, op, v2, v3);
 }
 
+int calc_result(post_fixed *c, char * expression){
+    int v, sign;
+    char carac;
+
+    // *(++ expression) foi usado porque, do contrário, o
+    // caractere salvo não avançaria da forma esperada, retornando valores anteriores.
+
+    for (carac = *expression; carac != '\0'; carac = *(++expression))
+    {   
+        sign = 1;       // sinal é inicializado positivo
+
+        // if para verificar se deve passar para o próximo caractere
+        if (carac == ' '){
+            continue;
+        }
+
+        // if para verificar numeros negativos
+        if (carac == '-' && ( *(expression + 1) >= '0' && *(expression + 1) <= '9')){
+            v = 0;
+            carac = *(++expression); // pula o sinal de negativo
+            sign = -1; // sinal de negativo
+        }
+
+        // if para verificar se o caractere é um número e salvar o valor na variável v
+        if (carac >= '0' && carac <= '9'){
+            v = 0;
+            while (carac >= '0' && carac <= '9'){
+                v = v * 10 + (carac - '0');
+                carac = *(++expression);
+            }
+            v *= sign; // aplica o sinal de negativo se necessário
+            calc_operand(c, v);        // adicona o número na pilha
+          
+        }
+        // fora das possibilidades anteriores, o caractere pode ser um operador
+        // ou um caractere inválido (dentro de calc_operator há uma proteção contra isso)
+        else{
+            calc_operator(c, carac);
+           
+        }
+    }
+
+    return pop(c->p); // retorna o resultado da expressão
+}
+
 void free_post_fixed(post_fixed **c){
     free_stack(&(*c)->p);
     free(*c);
