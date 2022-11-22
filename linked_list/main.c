@@ -1,4 +1,4 @@
-#include "lista_encadeada.h"
+#include "linked_list.h"
 
 
 int main(){
@@ -20,5 +20,7 @@ int main(){
     ll_ordered_insert(&ll, 5);
 
     ll_show(&ll);
+
+    return 0;
 
 }

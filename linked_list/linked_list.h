@@ -1,5 +1,5 @@
-#ifndef LISTA_ENCADEADA
-#define LISTA_ENCADEADA
+#ifndef LINKED_LIST
+#define LINKED_LIST
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -26,8 +26,6 @@ node* ll_search(node **ll, int v);
 
 // insere node inicio da lista, o nodevo nó apontará para um elemento posterior da lista
 
-int ll_show(node **ll);
-
 int ll_is_clear(node **ll);
 
 int ll_remove(node **ll, int v);
@@ -43,7 +41,9 @@ int ll_remove_at(node **ll, int pos);
 int ll_ordered_insert(node **ll, int v);
 
 int ll_size(node **ll);
+
 void ll_free(node **ll);
+void ll_show(node **ll);
 
 
 

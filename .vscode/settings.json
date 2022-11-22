@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "lista_encadeada.h": "c",
+        "linked_list.h": "c",
+        "pile.h": "c",
+        "stdio.h": "c",
+        "binary_tree.h": "c",
+        "stdlib.h": "c"
+    }
+}
