@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "post_fixed.h": "c",
+        "stdio.h": "c",
+        "stdlib.h": "c"
+    }
+}

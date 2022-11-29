@@ -18,7 +18,19 @@ int main(){
     root = insert_tree(root, 7);
     root = insert_tree(root, 12);
     root = insert_tree(root, 17);
-    //print_tree(root->left);
+
+    root = insert_tree(root, 11);
+
+    root = insert_tree(root, 13);
+
+    root = insert_tree(root, 16);
+
+    print_tree(root);
+    putchar('\n');
+    print_tree(root->left);
+    putchar('\n');
+
+    print_tree(root->right);
     
     //print_tree(root);
 
@@ -27,11 +39,27 @@ int main(){
 
     //root->left = free_tree(root->left);
 
+
+    putchar('\n');
+
+    root = balance_tree(root);
+
     print_tree(root);
 
-    printf("\n");
+    putchar('\n');
 
-    a1 = binary_search_tree(root, 12);
+
+    printf("A altura da árvore é:   %d \n", height_tree(root));
+
+    printf("A quantidade de nodos da árvore é: %d\n", q_nodes_tree(root));
+
+    printf("O nível do nó 11 é %d\n ", node_level(root, 11));
+
+
+
+    root = free_tree(root);
+
+
 
 
     return 0;
