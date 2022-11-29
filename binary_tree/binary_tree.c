@@ -21,6 +21,7 @@ node * create_tree(int v, node *left, node *right){
 node * insert_tree(node *root, int v){
     if (empty_tree(root)){
         root = create_tree(v, NULL, NULL);
+        root = balance_tree(root);
     } else if (v < root->info){
         root->left = insert_tree(root->left, v);
     } else {
@@ -167,7 +168,7 @@ node * balance_tree(node *root){
         }
         root = rotate_right(root);}
 
-    else if (height_tree(root->left) - height_tree(root->right) == -2){
+    else if ((height_tree(root->left) - height_tree(root->right)) == -2){
         balance_factor = height_tree(root->right->left) - height_tree(root->right->right);
         if (balance_factor == 1){
             root->right = rotate_right(root->right);

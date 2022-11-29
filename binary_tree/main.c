@@ -25,6 +25,14 @@ int main(){
 
     root = insert_tree(root, 16);
 
+    root = insert_tree(root, 18);
+
+    root = insert_tree(root, 14);
+
+    root = insert_tree(root, 19);
+
+    root = insert_tree(root, 20);
+
     print_tree(root);
     putchar('\n');
     print_tree(root->left);
@@ -42,8 +50,6 @@ int main(){
 
     putchar('\n');
 
-    root = balance_tree(root);
-
     print_tree(root);
 
     putchar('\n');
@@ -58,6 +64,8 @@ int main(){
 
 
     root = free_tree(root);
+
+    if (1 - 2 == -1) printf("É\n");
 
 
 
