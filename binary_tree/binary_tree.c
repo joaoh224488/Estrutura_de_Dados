@@ -105,14 +105,14 @@ node * insert_tree(node *root, int v){
 
 
 void print_tree(node *root){
-    printf("<");
+    
     if(root){
         printf("%d ", root->info);
         print_tree(root->left);
         //printf(" %d ", root->info);
         print_tree(root->right);
     }
-    printf(">");
+    else printf("[]");
 }
 
 node * free_tree(node *root){

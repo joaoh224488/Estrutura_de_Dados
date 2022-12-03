@@ -24,15 +24,7 @@ int main(){
 
     root = insert_tree(root, 10);
     root = insert_tree(root, 5);
-    root = insert_tree(root, 15);
-    root = insert_tree(root, 3);
-    root = insert_tree(root, 7);
-    root = insert_tree(root, 12);
-    root = insert_tree(root, 17);
-
-    root = insert_tree(root, 4);
-
-    root = insert_tree(root, 6);
+    
     
 
     
