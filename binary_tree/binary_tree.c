@@ -18,30 +18,101 @@ node * create_tree(int v, node *left, node *right){
     return new_node;
 }
 
+int height_tree(node *root){
+    int h_left, h_right;
+
+    if(!root) return 0;
+
+    h_left = height_tree(root->left);
+    h_right = height_tree(root->right);
+
+    if(h_left > h_right){
+        return h_left + 1;
+    }
+    else{
+        return h_right + 1;
+    }
+
+}
+
+
+node * rotate_left(node *root){
+    node * no;
+
+    no = root->right;
+
+    root->right = no->left;
+
+    no->left = root;
+
+    root = no;
+
+    return root;
+
+}
+
+node * rotate_right(node *root){
+    
+    node * no;
+
+    no = root->left;
+
+    root->left = no->right;
+
+    no->right = root;
+
+    root = no;
+
+    return root;
+}
+
+
+node * balance_tree(node *root){
+    int balance_factor;
+
+
+    if (height_tree(root->left) - height_tree(root->right) == 2){
+        balance_factor = height_tree(root->left->left) - height_tree(root->left->right);
+        if (balance_factor == -1){
+            root->left = rotate_left(root->left);
+        }
+        root = rotate_right(root);}
+
+    else if ((height_tree(root->left) - height_tree(root->right)) == -2){
+        balance_factor = height_tree(root->right->left) - height_tree(root->right->right);
+        if (balance_factor == 1){
+            root->right = rotate_right(root->right);
+        }
+        root = rotate_left(root);
+
+    }
+
+    return root;
+    }
+
 node * insert_tree(node *root, int v){
     if (empty_tree(root)){
         root = create_tree(v, NULL, NULL);
-        root = balance_tree(root);
     } else if (v < root->info){
         root->left = insert_tree(root->left, v);
     } else {
         root->right = insert_tree(root->right, v);
     }
-    return root;
+    return balance_tree(root);      // Funciona porque a árvore só pode se desbalancear uma situação por vez
 }
 
 
 
+
 void print_tree(node *root){
+    printf("<");
     if(root){
         printf("%d ", root->info);
         print_tree(root->left);
+        //printf(" %d ", root->info);
         print_tree(root->right);
     }
-    else {
-        printf("[]");
-        return;
-    }
+    printf(">");
 }
 
 node * free_tree(node *root){
@@ -87,22 +158,6 @@ int is_in_tree(node *root, int v){
     return FALSE;
 }
 
-int height_tree(node *root){
-    int h_left, h_right;
-
-    if(!root) return 0;
-
-    h_left = height_tree(root->left);
-    h_right = height_tree(root->right);
-
-    if(h_left > h_right){
-        return h_left + 1;
-    }
-    else{
-        return h_right + 1;
-    }
-
-}
 
 int q_nodes_tree(node *root){
     int q;
@@ -128,59 +183,3 @@ int node_level(node *root, int v){
         return 1 + node_level(root->right, v);
     
 }
-
-
-node * rotate_left(node *root){
-    node * no;
-
-    no = root->left;
-
-    root->right = no->left;
-
-    no->left = root;
-
-    root = no;
-
-    return root;
-}
-
-node * rotate_right(node *root){
-    node * no;
-
-    no = root->right;
-
-    root->right = no->left;
-
-    no->left = root;
-
-    root = no;
-
-    return root;
-}
-
-node * balance_tree(node *root){
-    int balance_factor;
-
-    if (height_tree(root->left) - height_tree(root->right) == 2){
-        balance_factor = height_tree(root->left->left) - height_tree(root->left->right);
-        if (balance_factor == -1){
-            root->left = rotate_left(root->left);
-        }
-        root = rotate_right(root);}
-
-    else if ((height_tree(root->left) - height_tree(root->right)) == -2){
-        balance_factor = height_tree(root->right->left) - height_tree(root->right->right);
-        if (balance_factor == 1){
-            root->right = rotate_right(root->right);
-        }
-        root = rotate_left(root);
-
-    }
-
-    return root;
-    }
-        
-/*
-FAZER O BALANÇEAMENTO DA ÁRVORE EM SI ESTÁ FALTANDO!!!!!
-
-*/

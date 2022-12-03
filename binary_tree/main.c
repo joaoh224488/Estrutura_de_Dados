@@ -3,13 +3,11 @@
 
 int main(){
 
-    node *root, *a1, *a2, *a3, *a4;
+    node *root;
 
     root = create_empty_tree();
-    a1 = create_empty_tree();
-    a2 = create_empty_tree();
-    a3 = create_empty_tree();
-    a4 = create_empty_tree();
+
+    
     root = insert_tree(root, 11);
 
     root = insert_tree(root, 13);
@@ -35,14 +33,21 @@ int main(){
     root = insert_tree(root, 4);
 
     root = insert_tree(root, 6);
+    
 
+    
+    /*
+    root = insert_tree(root, 4);
+    root = insert_tree(root, 5);
+    root = insert_tree(root, 6);
+    */
 
     print_tree(root);
     putchar('\n');
     //print_tree(root->left);
     putchar('\n');
 
-    print_tree(root->right);
+    //print_tree(root->right);
     
     //print_tree(root);
 
@@ -61,9 +66,12 @@ int main(){
 
     printf("A altura da árvore é:   %d \n", height_tree(root));
 
+    printf("A altura da árvore left é: %d \n", height_tree(root->left)); 
+    printf("A altura da árvore right é: %d \n", height_tree(root->right)); 
+
     printf("A quantidade de nodos da árvore é: %d\n", q_nodes_tree(root));
 
-    printf("O nível do nó 11 é %d\n ", node_level(root, 11));
+    //printf("O nível do nó 11 é %d\n ", node_level(root, 11));
 
 
 
