@@ -90,6 +90,18 @@ node * balance_tree(node *root){
     return root;
     }
 
+node * recursive_balance_tree(node *root){
+   
+    if (root == NULL) return NULL;
+
+    root->left = recursive_balance_tree(root->left);
+    root->right = recursive_balance_tree(root->right);
+
+    root = balance_tree(root);
+
+    return root;
+}
+
 node * insert_tree(node *root, int v){
     if (empty_tree(root)){
         root = create_tree(v, NULL, NULL);
@@ -114,6 +126,17 @@ void print_tree(node *root){
     }
     else printf("[]");
 }
+
+void ordered_print(node *root){
+    if(root){
+        ordered_print(root->left);
+        printf(" %d ", root->info);
+        ordered_print(root->right);
+    }
+    else return;
+}
+
+
 
 node * free_tree(node *root){
     if(root){
@@ -183,3 +206,74 @@ int node_level(node *root, int v){
         return 1 + node_level(root->right, v);
     
 }
+
+node * remove_tree(node * root, int v){
+    node * no;
+
+
+    if (root == NULL) return NULL;
+
+    else{
+        if (root->info == v){
+
+            if ((!root->left) && (!root->right)){ // folha
+                free(root);
+                return NULL;
+            }
+
+            else{
+                if (root->left && root->right){     // dois filhos
+                    no = root->left;
+
+                    while (no->right)               // força esse nó a ser um nó com um filho à esquerda
+                                                    // ou folha
+                    {
+                        no = no->right;
+                    }
+
+                    root->info = no->info;
+
+                    no->info = v;
+
+                    root->left = remove_tree(root->left, v); 
+                }
+
+                else{
+                    if (root->left)         // filho à esquerda
+                        no = root->left;
+
+                    else 
+                        no = root->right;   // filho à direita
+
+                    free(root);
+
+                    return no;      // retorna o filho pra árvore
+        
+                }
+
+
+            }
+
+        }
+
+        else {
+            if (v < root->info){
+                root->left = remove_tree(root->left, v);
+            }
+            else{
+                root->right = remove_tree(root->right, v);
+            }
+        }
+
+        return balance_tree(root);          // recalcula o balanceamento dos nós que estão
+                                            // acima do nó removido (simula de novo em caso de dúvida)
+
+       // return root;
+
+    }
+}
+
+
+
+
+

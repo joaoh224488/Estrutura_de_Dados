@@ -23,6 +23,8 @@ node *create_tree(int v, node *left, node *right);
 
 void print_tree(node *root);  
 
+void ordered_print(node *root);
+
 node * free_tree(node *root);
 
 node * binary_search_tree(node *root, int v);
@@ -42,3 +44,8 @@ node *rotate_left(node *);
 node *rotate_right(node *);
 
 node *balance_tree(node *);
+
+node *remove_tree(node *, int);
+
+node * recursive_balance(node *);
+
